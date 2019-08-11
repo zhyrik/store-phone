@@ -5,7 +5,7 @@ import { AppContext } from './Context'
 import { ButtonContainer } from './Button'
 
 export default function Details() {
-  const { detailProduct } = useContext(AppContext)
+  const { detailProduct, openModel } = useContext(AppContext)
   const { id, company, img, info, price, title, inCart } = detailProduct
   return (
     <div className="container py-4">
@@ -40,7 +40,7 @@ export default function Details() {
                 back to home
               </ButtonContainer>
             </Link>
-            <ButtonContainer yellow disable={inCart} onClick={() => console.log(id)}>
+            <ButtonContainer yellow disable={inCart} onClick={() => openModel()}>
               {inCart? "inCart": "add to cart"}
             </ButtonContainer>
           </div>

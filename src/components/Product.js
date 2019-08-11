@@ -8,7 +8,7 @@ import { AppContext } from './Context'
 
 function Product({ product }) {
   const { id, title, img, price, inCart } = product
-  const { handleDetail, addToCart } = useContext(AppContext)
+  const { handleDetail, addToCart, openModel } = useContext(AppContext)
   return (
 
     <Wrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
@@ -17,7 +17,7 @@ function Product({ product }) {
           <Link to="/details">
             <img src={img} alt="product" className="card-img-top"/>
           </Link>
-          <button className="card-btn" disabled={inCart?true:false} onClick={()=> addToCart(id)}>
+          <button className="card-btn" disabled={inCart?true:false} onClick={()=> { addToCart(id); openModel(id); }}>
             {inCart? (<p className="text-capitalize mb-0" disabled>
               in Cart
             </p>): <FaCartPlus />}

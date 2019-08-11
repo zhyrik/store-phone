@@ -10,14 +10,15 @@ import Default from './components/Default'
 import Details from './components/Details'
 import Navbar from './components/Navbar'
 import ProductList from './components/ProductList'
+import Model from './components/Model'
 
-import { storeProducts, detailProduct } from './data'
+import { storeProducts, detailProducts } from './data'
 
 function App() {
   const [product, setProduct] = useState(storeProducts)
-  const [detailProduct, setDetailsProduct] = useState({})
+  const [detailProduct, setDetailsProduct] = useState(detailProducts)
   const [cart, setCart] = useState([])
-  const [modelOpen, setModelOpen] = useState(true)
+  const [modelOpen, setModelOpen] = useState(false)
   const [modelProduct, setModelProduct] = useState(detailProduct)
   
   useEffect(() => {
@@ -51,12 +52,18 @@ function App() {
     console.log(product, cart)
   }
 
-   const openModel => {
+   const openModel = id => {
+    const product = getItem(id)
+    setModelProduct(product)
+    setModelOpen(true)
+  }
 
+  const closeModel = id => {
+    setModelOpen(false)
   }
 
   return (
-    <AppContext.Provider value={{product, detailProduct, handleDetail, addToCart }}>
+    <AppContext.Provider value={{modelOpen, openModel, closeModel, product, detailProduct, handleDetail, addToCart }}>
       <Navbar />
       <Switch>
         <Route exact path="/" component={ProductList} />
@@ -64,6 +71,7 @@ function App() {
         <Route path="/cart" component={Cart} />
         <Route component={Default} />
       </Switch>
+      <Model />
     </AppContext.Provider>
     
   )
