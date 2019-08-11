@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -14,9 +14,13 @@ import ProductList from './components/ProductList'
 import { storeProducts, detailProduct } from './data'
 
 function App() {
-  console.log(storeProducts)
+  const [product, setProduct] = useState(storeProducts)
+  useEffect(() => {
+    const newProduct = JSON.parse(JSON.stringify(product))
+    setProduct(newProduct)
+  }, [])
   return (
-    <AppContext.Provider value={{product: storeProducts, detailProduct }}>
+    <AppContext.Provider value={{product, detailProduct }}>
       <Navbar />
       <Switch>
         <Route exact path="/" component={ProductList} />

@@ -1,18 +1,19 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { FaCartPlus } from 'react-icons/fa'
+import PropTypes from 'prop-types'
 
 import { AppContext } from './Context'
-import { FaCartPlus } from 'react-icons/fa';
 
-export default function Product({ product }) {
+function Product({ product }) {
   const { title, img, price, inCart } = product
   const { } = useContext(AppContext)
   return (
 
     <Wrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
       <div className="card">
-        <div className="img-container p-5" onClick={console.log('prod')}>
+        <div className="img-container p-5" onClick={() => console.log('prod')}>
           <Link to="/details">
             <img src={img} alt="product" className="card-img-top"/>
           </Link>
@@ -33,6 +34,16 @@ export default function Product({ product }) {
       </div>
     </Wrapper>
   )
+}
+
+Product.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    inCart: PropTypes.bool.isRequired,
+    img: PropTypes.string.isRequired
+  }).isRequired
 }
 
 const Wrapper = styled.div`
@@ -82,5 +93,6 @@ const Wrapper = styled.div`
 .card-btn:hover{
   color: var(--mainBlue);
   cursor: pointer;
-}
-`
+}`
+
+export default Product
