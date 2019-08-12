@@ -4,8 +4,8 @@ import { AppContext } from '../Context'
 import { FaTrash } from 'react-icons/fa';
 
 export default function CartItem({ item }) {
-  const { cart } = useContext(AppContext)
-  const { increment, decrement, removeItam } = cart
+  const { increment, decrement, removeItam  } = useContext(AppContext)
+  // const { increment, decrement, removeItam } = cart
   const { id, title, img, price, total, count} = item
 
   return (
@@ -33,7 +33,7 @@ export default function CartItem({ item }) {
       </div>
 
       <div className="col-10 mx-auto col-lg-2">
-        <div className="cart-icon" onClick={() => removeItam()}>
+        <div className="cart-icon" onClick={() => removeItam(id)}>
           <FaTrash />
         </div>
       </div>

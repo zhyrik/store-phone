@@ -13,9 +13,10 @@ import ProductList from './components/ProductList'
 import Model from './components/Model'
 
 import { storeProducts, detailProducts } from './data'
+import Product from './components/Product';
 
 function App() {
-  const [product, setProduct] = useState(storeProducts)
+  const [product, setProduct] = useState([])
   const [detailProduct, setDetailsProduct] = useState(detailProducts)
   const [cart, setCart] = useState([])
   const [modelOpen, setModelOpen] = useState(false)
@@ -24,10 +25,17 @@ function App() {
   const [cartTax, setCartax] = useState(0)
   const [carTotal, setCartTotal] = useState(0)
   
+  // did mount
   useEffect(() => {
-    const newProduct = JSON.parse(JSON.stringify(product))
-    setProduct(newProduct)
+    newProduct()
   }, [])
+  // wen cart change we count cart total, tax
+  useEffect(() => { addTotals() }, [cart])
+
+  const newProduct = () => {
+    const newProduct = JSON.parse(JSON.stringify(storeProducts))
+    setProduct(newProduct)
+  }
 
   // get one product from array 
   const getItem = id => {
@@ -52,7 +60,7 @@ function App() {
 
     // setProduct(productItem)
     setCart([...cart, productItem])
-    console.log(product, cart)
+    
   }
 
    const openModel = id => {
@@ -66,19 +74,64 @@ function App() {
   }
 
   const increment = id => {
-
+    incrementDecrement(id, 1)
   }
 
   const decrement = id => {
-    
+    incrementDecrement(id, -1)
+  }
+
+  const incrementDecrement = (id, num) => {
+    let tempCart = [...cart]
+    const selectedProduct = tempCart.find(item => item.id === id)
+  
+    const index = tempCart.indexOf(selectedProduct)
+    const product = tempCart[index]
+
+    product.count = product.count + num
+
+    if (product.count <= 0) {
+      removeItam(id)
+    } else {
+      product.total = product.count * product.price
+      setCart([...tempCart])
+    }
   }
 
   const removeItam = id => {
+    let tempProducts = [...product]
+    let tempCart = [...cart]
 
+    tempCart = tempCart.filter(item => item.id !== id)
+
+    const index = tempProducts.indexOf(getItem(id))
+    let removedProduct = tempProducts[index]
+    removedProduct.inCart = false
+    removedProduct.count = 0
+    removedProduct.total = 0
+
+    console.log(...tempCart, tempProducts)
+    setCart([...tempCart])
+    setProduct([...tempProducts])
   }
 
   const clearCart = () => {
+    setCart([])
+    newProduct()
+    addTotals()
+  }
 
+  // count total, tax , subtotal cost
+  const addTotals = () => {
+    let subTotal = 0;
+    cart.map(item => (subTotal += item.total))
+    const tempTax = subTotal *0.1
+    const tax = parseFloat(tempTax.toFixed(2))
+    const total = subTotal + tax
+
+    setCartSubTotal(subTotal)
+    setCartax(tax)
+    setCartTotal(total)
   }
 
   return (

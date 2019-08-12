@@ -8,7 +8,6 @@ import { AppContext } from './Context'
 export default function Model() {
   const { modelOpen, closeModel, detailProduct } = useContext(AppContext)
   const { img, title, price } = detailProduct
-  console.log(modelOpen, closeModel, detailProduct)
 
   if(!modelOpen) {
     return null
