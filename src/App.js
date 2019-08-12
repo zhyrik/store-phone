@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 import { AppContext } from './components/Context'
-import Cart from './components/Cart'
+import Cart from './components/cart'
 import Default from './components/Default'
 import Details from './components/Details'
 import Navbar from './components/Navbar'
@@ -20,6 +20,9 @@ function App() {
   const [cart, setCart] = useState([])
   const [modelOpen, setModelOpen] = useState(false)
   const [modelProduct, setModelProduct] = useState(detailProduct)
+  const [cartSubTotal, setCartSubTotal] = useState(0)
+  const [cartTax, setCartax] = useState(0)
+  const [carTotal, setCartTotal] = useState(0)
   
   useEffect(() => {
     const newProduct = JSON.parse(JSON.stringify(product))
@@ -62,8 +65,40 @@ function App() {
     setModelOpen(false)
   }
 
+  const increment = id => {
+
+  }
+
+  const decrement = id => {
+    
+  }
+
+  const removeItam = id => {
+
+  }
+
+  const clearCart = () => {
+
+  }
+
   return (
-    <AppContext.Provider value={{modelOpen, openModel, closeModel, product, detailProduct, handleDetail, addToCart }}>
+    <AppContext.Provider value={{
+      modelOpen,
+      openModel,
+      closeModel,
+      product,
+      detailProduct,
+      handleDetail,
+      addToCart,
+      increment,
+      decrement,
+      removeItam,
+      clearCart,
+      cart,
+      cartSubTotal,
+      cartTax,
+      carTotal
+    }}>
       <Navbar />
       <Switch>
         <Route exact path="/" component={ProductList} />
