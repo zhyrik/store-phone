@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+// main button default blue. With props yellow
 export const ButtonContainer = styled.button`
 text-transform: capitalize;
 font-size: 1.4rem;

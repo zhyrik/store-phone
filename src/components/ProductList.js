@@ -5,8 +5,12 @@ import Title from './Title'
 
 import { AppContext } from './Context'
 
+/**
+ * functional react component for product list container
+ * @function
+ * @returns {JSX.Element} - react component
+ */
 export default function ProductList() {
-  // const [products, setProducts] = useState([])
   const { product } = useContext(AppContext)
   return (
     <>

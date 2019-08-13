@@ -1,5 +1,10 @@
 import React from 'react'
 
+/**
+ * functional react component CartColumns. For display > 992px 
+ * @function
+ * @returns {JSX.Element} - react component
+ */
 export default function CartCoums() {
   return (
     <div className="container-fluid text-center d-none d-lg-block">

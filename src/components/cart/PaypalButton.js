@@ -1,6 +1,7 @@
 import React from 'react';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 
+// from react-paypal-express-checkout (Full Example)
 export default class MyApp extends React.Component {
     render() {
 		const onSuccess = (payment) => {

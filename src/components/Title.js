@@ -1,6 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default function Title({ name, title }) {
+/**
+ * functional react component for titles
+ * @function
+ * @param {string} name - black text
+ * @param {string} title - blue text
+ * @returns {JSX.Element} - react component
+ */
+function Title({ name, title }) {
   return (
     <div className="row">
       <div className="col-10 mx-auto text-center text-title">
@@ -11,3 +19,10 @@ export default function Title({ name, title }) {
     </div>
   )
 }
+
+Title.propTypes = {
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
+}
+
+export default Title

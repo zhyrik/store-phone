@@ -5,6 +5,11 @@ import { Link } from 'react-router-dom'
 import { ButtonContainer } from './Button'
 import { AppContext } from './Context'
 
+/**
+ * functional react component. Model card after chouse product. 
+ * @function
+ * @returns {JSX.Element} - react component
+ */
 export default function Model() {
   const { modelOpen, closeModel, detailProduct } = useContext(AppContext)
   const { img, title, price } = detailProduct

@@ -1,7 +1,12 @@
 import React from 'react'
 
+/**
+ * functional compoent. 404 page.
+ * @function
+ * @param {object} props - router props (location, history)
+ * @returns {JSX.Element} - react compoent
+ */
 export default function Default(props) {
-  console.log('default',props)
   return (
     <div className="constainer">
       <div className="row">

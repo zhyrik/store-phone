@@ -6,6 +6,11 @@ import styled from 'styled-components'
 import { ButtonContainer } from './Button'
 import logo from '../logo.svg'
 
+/**
+ * functional react component for Navbar
+ * @function
+ * @returns {JSX.Element} - react component
+ */
 export default function Navbar() {
   return (
     <Wrapper className="navbar navbar-expand-sm navbar-dark px-sm-5">

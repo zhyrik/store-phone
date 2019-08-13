@@ -6,6 +6,12 @@ import PropTypes from 'prop-types'
 
 import { AppContext } from './Context'
 
+/**
+ * functional react component for Product card
+ * @function
+ * @param {object} product - all product info
+ * @returns {JSX.Element} - react component
+ */
 function Product({ product }) {
   const { id, title, img, price, inCart } = product
   const { handleDetail, addToCart, openModel } = useContext(AppContext)
