@@ -13,7 +13,6 @@ import ProductList from './components/ProductList'
 import Model from './components/Model'
 
 import { storeProducts, detailProducts } from './data'
-import Product from './components/Product';
 
 function App() {
   const [product, setProduct] = useState([])
@@ -63,24 +62,27 @@ function App() {
     
   }
 
-   const openModel = id => {
+  // open & close model cart button in Product
+  const openModel = id => {
     const product = getItem(id)
     setModelProduct(product)
     setModelOpen(true)
   }
-
   const closeModel = id => {
     setModelOpen(false)
   }
 
+  // increment button in Cart
   const increment = id => {
     incrementDecrement(id, 1)
   }
 
+  // decrement button in Cart
   const decrement = id => {
     incrementDecrement(id, -1)
   }
 
+  // to increment & decrement function
   const incrementDecrement = (id, num) => {
     let tempCart = [...cart]
     const selectedProduct = tempCart.find(item => item.id === id)
@@ -98,6 +100,7 @@ function App() {
     }
   }
 
+  // remove one imam from Cart (trashcan button & decrement)
   const removeItam = id => {
     let tempProducts = [...product]
     let tempCart = [...cart]
@@ -110,11 +113,11 @@ function App() {
     removedProduct.count = 0
     removedProduct.total = 0
 
-    console.log(...tempCart, tempProducts)
     setCart([...tempCart])
     setProduct([...tempProducts])
   }
 
+  // clear button in Cart
   const clearCart = () => {
     setCart([])
     newProduct()

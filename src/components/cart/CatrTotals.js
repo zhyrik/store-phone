@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
+import PaypalButton from './PaypalButton'
 import { AppContext } from '../Context'
 
-export default function CatrTotals() {
+export default function CatrTotals({ history }) {
   const { cartSubTotal, cartTax, carTotal, clearCart } = useContext(AppContext)
   return (
     <>
@@ -36,6 +37,11 @@ export default function CatrTotals() {
               </span>
               <strong> $ {carTotal}</strong>
             </h5>
+            <PaypalButton
+              total={carTotal}
+              clearCart={clearCart}
+              history={history}
+            />
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ import CartList from './CartList'
 import CartTotals from './CatrTotals'
 import { AppContext } from '../Context'
 
-export default function Cart() {
+export default function Cart({ history }) {
   const { cart } = useContext(AppContext)
   return (
     <section>
@@ -16,7 +16,7 @@ export default function Cart() {
           <Title name="your" title="cart"/>
           <CartColums />
           <CartList />
-          <CartTotals />
+          <CartTotals history={history}/>
         </>)
         : <EmptyCart />
       }
